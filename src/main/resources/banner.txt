@@ -1,0 +1,9 @@
+██╗   ██╗███████╗███████╗██████╗
+██║   ██║██╔════╝██╔════╝██╔══██╗
+██║   ██║███████╗█████╗  ██████╔╝
+██║   ██║╚════██║██╔══╝  ██╔══██╗
+╚██████╔╝███████║███████╗██║  ██║
+ ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝
+:: ${application.title} :: ${application.formatted-version}
+:: spring boot :: ${spring-boot.formatted-version}
+:: vaadin :: ${vaadin.version}
