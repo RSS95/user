@@ -13,3 +13,5 @@ HELP.md
 !.mvn/wrapper/maven-wrapper.jar
 webpack.generated.js
 pnpmfile.js
+mvnw
+mvnw.cmd
