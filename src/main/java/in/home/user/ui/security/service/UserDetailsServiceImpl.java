@@ -2,7 +2,7 @@ package in.home.user.ui.security.service;
 
 import in.home.user.api.model.Role;
 import in.home.user.api.model.User;
-import in.home.user.ui.security.client.UserClient;
+import in.home.user.ui.feign.client.UserClient;
 import java.util.Collection;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
   public User save(User user) {
     user.setPassword(passwordEncoder.encode(user.getPassword()));
-    return userClient.create(user);
+    return userClient.save(user);
   }
 
   @Override

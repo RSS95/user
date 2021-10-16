@@ -1,4 +1,4 @@
-package in.home.user.ui.view;
+package in.home.user.ui.module.login.view;
 
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.login.LoginOverlay;
@@ -8,11 +8,13 @@ import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
+@PageTitle("Login")
 @Tag("sa-login-view")
 @Route(value = LoginView.ROUTE)
-@PageTitle("Login")
 public class LoginView extends VerticalLayout implements BeforeEnterObserver {
+
   public static final String ROUTE = "login";
+  public static final String LOGOUT_ROUTE = "logout";
 
   private LoginOverlay login = new LoginOverlay();
 
