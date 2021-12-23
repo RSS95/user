@@ -1,11 +1,11 @@
 package in.home.user.ui.feign.client;
 
-import in.home.user.api.service.UserService;
+import in.home.user.api.service.RoleService;
 import in.home.user.ui.feign.configuration.FeignConfiguration;
 import org.springframework.cloud.openfeign.FeignClient;
 
 @FeignClient(
-    name = "user-client",
+    name = "role-client",
     url = "${feign.user-url}",
     configuration = FeignConfiguration.class)
-public interface UserClient extends UserService {}
+public interface RoleClient extends RoleService {}

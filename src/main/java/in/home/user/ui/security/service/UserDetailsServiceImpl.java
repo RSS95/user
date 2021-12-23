@@ -34,14 +34,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-    User user = userClient.loadUserByUsername(username);
+    User user = userClient.loadUserByUsernameWithPassword(username);
     if (user == null) {
       throw new UsernameNotFoundException("Invalid username or password.");
     }
     return new org.springframework.security.core.userdetails.User(
-        user.getEmail(),
-        passwordEncoder.encode(user.getPassword()),
-        mapRolesToAuthorities(user.getRoleList()));
+        user.getUserName(), user.getPassword(), mapRolesToAuthorities(user.getRoleSet()));
   }
 
   private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {

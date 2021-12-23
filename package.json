@@ -38,7 +38,8 @@
     "@webcomponents/webcomponentsjs": "^2.2.10",
     "construct-style-sheets-polyfill": "2.4.16",
     "lit-element": "2.5.1",
-    "lit-html": "1.4.1"
+    "lit-html": "1.4.1",
+    "multiselect-combo-box": "2.4.2"
   },
   "devDependencies": {
     "chokidar": "^3.5.0",
@@ -100,7 +101,8 @@
       "@webcomponents/webcomponentsjs": "^2.2.10",
       "construct-style-sheets-polyfill": "2.4.16",
       "lit-element": "2.5.1",
-      "lit-html": "1.4.1"
+      "lit-html": "1.4.1",
+      "multiselect-combo-box": "2.4.2"
     },
     "devDependencies": {
       "chokidar": "^3.5.0",
@@ -120,6 +122,6 @@
       "webpack-dev-server": "3.11.0",
       "webpack-merge": "4.2.2"
     },
-    "hash": "68f634c55d48a392cf1f82c43aba08d8df3a2e8008a5ef11cd1a7249406b11c9"
+    "hash": "b85db12999f27be1459b1b0dc749c78e4d26bcbc4200520f3ce43ae20eb46798"
   }
 }

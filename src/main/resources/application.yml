@@ -17,15 +17,13 @@ spring:
 vaadin.pnpm.enable: true
 # To improve the performance during development.
 # For more information https://vaadin.com/docs/flow/spring/tutorial-spring-configuration.html#special-configuration-parameters
-vaadin.whitelisted-packages: in/home/user/ui
+vaadin.whitelisted-packages: in/home/user/ui, org/vaadin/gatanaso
 
 ###----------------------------------------------------------------------------------------------###
 #  Feign Client Config
 ###----------------------------------------------------------------------------------------------###
 feign:
-  user:
-    name: user-ws
-    url: http://localhost:8091/
+  user-url: http://localhost:8091/
 ###----------------------------------------------------------------------------------------------###
 #  Feign Client Logging Config
 ###----------------------------------------------------------------------------------------------###

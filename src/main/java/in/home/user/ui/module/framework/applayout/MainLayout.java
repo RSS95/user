@@ -5,10 +5,10 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
-import com.vaadin.flow.component.orderedlayout.FlexComponent.JustifyContentMode;
-import com.vaadin.flow.component.orderedlayout.FlexLayout;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.router.BeforeEnterEvent;
@@ -53,15 +53,19 @@ public class MainLayout extends AppLayout implements BeforeEnterObserver {
     tabs.add(tab);
   }
 
-  private FlexLayout getNavBarRightLayout() {
-    FlexLayout logoutLayout = new FlexLayout();
+  private VerticalLayout getNavBarRightLayout() {
+    VerticalLayout logoutLayout = new VerticalLayout();
     logoutLayout.setSizeFull();
-    logoutLayout.setJustifyContentMode(JustifyContentMode.END);
     logoutLayout.setAlignItems(Alignment.END);
     Button logout =
         new Button(LOGOUT, e -> UI.getCurrent().getPage().setLocation(LoginView.LOGOUT_ROUTE));
+    logout.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
+    logout.getStyle().set("margin", "unset");
+    logout.getStyle().set("margin-top", "var(--lumo-space-m)");
     logout.setDisableOnClick(true);
     logoutLayout.add(logout);
+    logoutLayout.getStyle().set("padding-top", "unset");
+    logoutLayout.getStyle().set("padding-bottom", "unset");
     return logoutLayout;
   }
 
