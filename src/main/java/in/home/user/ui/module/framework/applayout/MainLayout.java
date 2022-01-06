@@ -16,6 +16,8 @@ import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.spring.annotation.SpringComponent;
 import com.vaadin.flow.spring.annotation.UIScope;
+import com.vaadin.flow.theme.Theme;
+import com.vaadin.flow.theme.lumo.Lumo;
 import in.home.user.ui.module.dashboard.view.DashboardView;
 import in.home.user.ui.module.login.view.LoginView;
 import in.home.user.ui.module.role.view.RoleView;
@@ -29,6 +31,7 @@ import org.springframework.context.annotation.Scope;
 @UIScope
 @SpringComponent
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+@Theme(value = Lumo.class, variant = Lumo.DARK)
 public class MainLayout extends AppLayout implements BeforeEnterObserver {
 
   public static final String APPLICATION_NAME = "H:user";

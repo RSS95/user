@@ -103,9 +103,9 @@
         </dependency>
 
         <dependency>
-           <groupId>org.vaadin.gatanaso</groupId>
-           <artifactId>multiselect-combo-box-flow</artifactId>
-           <version>2.5.0</version>
+            <groupId>org.vaadin.gatanaso</groupId>
+            <artifactId>multiselect-combo-box-flow</artifactId>
+            <version>2.5.0</version>
         </dependency>
     </dependencies>
 
