@@ -1,9 +1,10 @@
 logging:
   level:
+    root: WARN
     org:
-      atmosphere: warn
+      atmosphere: WARN
 server:
-  port: ${PORT:8090}
+  port: ${PORT:8080}
 spring:
   output:
     ansi:
@@ -14,6 +15,37 @@ spring:
   servlet:
     multipart:
       enabled: false
+  security:
+    oauth2:
+      client:
+        registration:
+          user-oidc:
+            provider: spring
+            client-id: user
+            client-secret: secret
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://127.0.0.1:8080/login/oauth2/code/{registrationId}"
+            scope: openid, read
+            client-name: user-oidc
+          user-authorization-code:
+            provider: spring
+            client-id: user
+            client-secret: secret
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://127.0.0.1:8080/authorized"
+            scope: openid, read
+            client-name: user-authorization-code
+          user-client-credentials:
+            provider: spring
+            client-id: user
+            client-secret: secret
+            authorization-grant-type: client_credentials
+            scope: read
+            client-name: user-client-credentials
+        provider:
+          spring:
+            issuer-uri: http://auth-server:8090
+
 vaadin.pnpm.enable: true
 # To improve the performance during development.
 # For more information https://vaadin.com/docs/flow/spring/tutorial-spring-configuration.html#special-configuration-parameters
@@ -23,12 +55,18 @@ vaadin.whitelisted-packages: in/home/user/ui, org/vaadin/gatanaso
 #  Feign Client Config
 ###----------------------------------------------------------------------------------------------###
 feign:
-  user-url: http://localhost:8091/
+  user-url: http://auth-server:8090/
 ###----------------------------------------------------------------------------------------------###
 #  Feign Client Logging Config
 ###----------------------------------------------------------------------------------------------###
 logging.level:
-  root: WARN
+  root: INFO
   in.home: TRACE
   in.home.user.ui.feign.client: WARN
+  org.springframework.web: TRACE
+  org.springframework.security: TRACE
+  org.springframework.security.oauth2: TRACE
 ###----------------------------------------------------------------------------------------------###
+
+messages:
+  base-uri: http://auth-server:8090/user-ws/user/findAll

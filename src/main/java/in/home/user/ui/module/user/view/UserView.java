@@ -12,11 +12,12 @@ import in.home.user.ui.module.common.model.Mode;
 import in.home.user.ui.module.framework.applayout.MainLayout;
 import in.home.user.ui.module.user.component.UserDialog;
 import in.home.user.ui.module.user.component.UserGrid;
-import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
+
+import javax.annotation.PostConstruct;
 
 @UIScope
 @SpringComponent
@@ -24,44 +25,44 @@ import org.springframework.context.annotation.Scope;
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class UserView extends Div {
 
-  public static final String ROUTE = "user";
-  public static final String NAVIGATION_TAB_NAME = "User";
+    public static final String ROUTE = "user";
+    public static final String NAVIGATION_TAB_NAME = "User";
 
-  private ApplicationContext applicationContext;
-  private UserGrid userGrid;
+    private ApplicationContext applicationContext;
+    private UserGrid userGrid;
 
-  @PostConstruct
-  private void init() {
-    VerticalLayout layout = new VerticalLayout();
-    layout.setSizeFull();
-    layout.add(getMenuBar());
-    layout.add(this.userGrid);
-    add(layout);
-    setSizeFull();
-  }
+    @PostConstruct
+    private void init() {
+        VerticalLayout layout = new VerticalLayout();
+        layout.setSizeFull();
+        layout.add(getMenuBar());
+        layout.add(this.userGrid);
+        add(layout);
+        setSizeFull();
+    }
 
-  private MenuBar getMenuBar() {
-    MenuBar menuBar = new MenuBar();
-    menuBar.addThemeVariants(MenuBarVariant.LUMO_TERTIARY);
+    private MenuBar getMenuBar() {
+        MenuBar menuBar = new MenuBar();
+        menuBar.addThemeVariants(MenuBarVariant.LUMO_TERTIARY);
 
-    menuBar.addItem("Add User", event -> openUserDialog(new User(), Mode.ADD));
+        menuBar.addItem("Add User", event -> openUserDialog(new User(), Mode.ADD));
 
-    return menuBar;
-  }
+        return menuBar;
+    }
 
-  private void openUserDialog(User user, Mode mode) {
-    UserDialog userDialog = applicationContext.getBean(UserDialog.class);
-    userDialog.addSaveListener(event -> this.userGrid.refreshAllGrid());
-    userDialog.open(user, mode);
-  }
+    private void openUserDialog(User user, Mode mode) {
+        UserDialog userDialog = applicationContext.getBean(UserDialog.class);
+        userDialog.addSaveListener(event -> this.userGrid.refreshAllGrid());
+        userDialog.open(user, mode);
+    }
 
-  @Autowired
-  public void setApplicationContext(ApplicationContext applicationContext) {
-    this.applicationContext = applicationContext;
-  }
+    @Autowired
+    public void setApplicationContext(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
+    }
 
-  @Autowired
-  public void setUserGrid(UserGrid userGrid) {
-    this.userGrid = userGrid;
-  }
+    @Autowired
+    public void setUserGrid(UserGrid userGrid) {
+        this.userGrid = userGrid;
+    }
 }

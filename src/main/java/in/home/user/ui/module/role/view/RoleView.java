@@ -59,8 +59,7 @@ public class RoleView extends Div {
         MenuBar menuBar = new MenuBar();
         menuBar.addThemeVariants(MenuBarVariant.LUMO_TERTIARY);
 
-        menuBar.addItem(
-                ButtonUtil.getPrimaryButton("Add", event -> openRoleDialog(new Role(), Mode.ADD)));
+        menuBar.addItem(ButtonUtil.getPrimaryButton("Add", event -> openRoleDialog(new Role(), Mode.ADD)));
         menuBar.addItem(ButtonUtil.getDefaultButton("Edit", event -> {
             Optional<Role> roleOp = this.roleGrid.getSelectedRole();
             if (roleOp.isPresent()) {
@@ -73,9 +72,11 @@ public class RoleView extends Div {
         menuBar.addItem(ButtonUtil.getErrorButton("Delete", event -> {
             Optional<Role> roleOp = this.roleGrid.getSelectedRole();
             if (roleOp.isPresent()) {
-                this.roleClient.delete(roleOp.get().getId());
+                this.roleClient.delete(roleOp.get()
+                        .getId());
                 this.roleGrid.refreshAllGrid();
-                showNotification("Role (" + roleOp.get().getRoleName() + ") deleted successfully");
+                showNotification("Role (" + roleOp.get()
+                        .getRoleName() + ") deleted successfully");
             }
             else {
                 showNotification("Select record from the grid");
@@ -99,14 +100,18 @@ public class RoleView extends Div {
     private void addGridSelectionListener() {
         this.roleGrid.addGridSelectionListener(event -> {
             this.activateDeactivateMenuItem.removeAll();
-            if (event.getFirstSelectedItem().isPresent()) {
-                if (event.getFirstSelectedItem().get().isActive()) {
+            if (event.getFirstSelectedItem()
+                    .isPresent()) {
+                if (event.getFirstSelectedItem()
+                        .get()
+                        .isActive()) {
                     this.activateDeactivateMenuItem.add(getDeactivateButton());
                 }
                 else {
                     this.activateDeactivateMenuItem.add(getActivateButton());
                 }
-            }else {
+            }
+            else {
                 this.roleGrid.deselectAll();
                 this.activateDeactivateMenuItem.add(getActivateDeactivateButton());
             }
@@ -115,8 +120,7 @@ public class RoleView extends Div {
 
     private Button getActivateDeactivateButton() {
         if (this.activateDeactivateButton == null) {
-            this.activateDeactivateButton = ButtonUtil.getErrorSecondaryButton(
-                    "Activate/Deactivate",
+            this.activateDeactivateButton = ButtonUtil.getErrorSecondaryButton("Activate/Deactivate",
                     event -> showNotification("Select record from the grid"));
         }
         return this.activateDeactivateButton;
@@ -126,10 +130,10 @@ public class RoleView extends Div {
         if (this.activateButton == null) {
             this.activateButton = ButtonUtil.getDefaultButton("Activate", clickEvent -> {
                 this.roleGrid.getSelectedRole()
-                             .ifPresent(role -> {
-                                 this.roleClient.activate(role.getId());
-                                 this.roleGrid.refreshAllGrid();
-                             });
+                        .ifPresent(role -> {
+                            this.roleClient.activate(role.getId());
+                            this.roleGrid.refreshAllGrid();
+                        });
             });
         }
         return this.activateButton;
@@ -139,10 +143,10 @@ public class RoleView extends Div {
         if (this.deactivateButton == null) {
             this.deactivateButton = ButtonUtil.getErrorSecondaryButton("Deactivate", clickEvent -> {
                 this.roleGrid.getSelectedRole()
-                             .ifPresent(role -> {
-                                 this.roleClient.deactivate(role.getId());
-                                 this.roleGrid.refreshAllGrid();
-                             });
+                        .ifPresent(role -> {
+                            this.roleClient.deactivate(role.getId());
+                            this.roleGrid.refreshAllGrid();
+                        });
             });
         }
         return this.deactivateButton;
